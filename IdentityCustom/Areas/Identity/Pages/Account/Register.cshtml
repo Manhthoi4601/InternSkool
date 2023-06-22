@@ -1,0 +1,71 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Login";
+}
+
+<div class="container">
+    <div class="loginbox">
+        <div class="login-left">
+            <img class="img-fluid" src="~/assets/img/login.png" alt="Logo">
+        </div>
+        <div class="login-right">
+            <div class="login-right-wrap">
+                <h1>Đăng Ký</h1>
+                <p class="account-subtitle">Điền thông tin để đăng ký</p>
+
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-lg-6 form-group">
+                            <label asp-for="Input.LastName">Họ <span class="login-danger">*</span></label>
+                            <input asp-for="Input.LastName" class="form-control" type="text" autocomplete="lastname" required>
+                        </div>
+                        <div class="col-lg-6 form-group">
+                            <label asp-for="Input.FirstName">Tên<span class="login-danger">*</span></label>
+                            <input asp-for="Input.FirstName" class="form-control" type="text" autocomplete="firstname" aria-required="true" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email">Email<span class="login-danger">*</span></label>
+                        <input asp-for="Input.Email" class="form-control" type="email" required>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for ="Input.Password">Mật khẩu <span class="login-danger">*</span></label>
+                        <input asp-for="Input.Password" class="form-control pass-input" type="password" required>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword">Nhập lại mật khẩu<span class="login-danger">*</span></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control pass-confirm" type="password" required>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="dont-have">Bạn vừa đăng ký?<a asp-page="./Login">Đăng nhập</a></div>
+                    <div class="form-group mb-0">
+                        <button id="registerSubmit" type="submit" class="btn btn-dark btn-block">Đăng Ký</button>
+                    </div>
+                </form>
+
+                <div class="login-or">
+                    <span class="or-line"></span>
+                    <span class="span-or">or</span>
+                </div>
+
+                <div class="social-login">
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

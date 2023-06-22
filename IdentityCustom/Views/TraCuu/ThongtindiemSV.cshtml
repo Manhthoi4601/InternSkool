@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Tra Cứu Điểm Thi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">@ViewData["Title"]</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang Chủ</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="page-header">
+                        <div class="row">
+                            <form id="searchAdvanced" class="col">
+                                <div class="row col-lg-12 col-sm-12 mt-4">
+                                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
+                                        <input type="text" class="form-control" placeholder="Nhập Tên / Mã SV ..." style="height:auto" id="searchName" />
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
+                                        <input type="text" class="form-control" placeholder="Nhập Khoa..." style="height:auto" id="searchKhoa" />
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-12 mb-3">
+                                        <input type="text" class="form-control" placeholder="Nhập Đề Tài..." style="height:auto" id="searchDeTai" />
+                                    </div>
+                                    <div class="col-lg-2 col-sm-6 col-12 text-start">
+                                        <button type="button" class="btn btn-dark " id="resetBtn"> <i class="fas fa-sync"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive" id="Tbl">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12 mb-2">
+                                <h3 class="page-title text-center">Kết Quả Điểm Thi</h3>
+                            </div>
+                        </div>
+                        <table id="ScoreTbl" class="table border-0 star-student table-hover table-center mb-0 datatable table-striped w-100">
+                            <thead class="student-thread">
+                                <tr>
+                                    <th>Mã SV</th>
+                                    <th>Họ Tên SV</th>
+                                    <th>Ngày Sinh</th>
+                                    <th>Quê Quán</th>
+                                    <th>Khoa</th>
+                                    <th>GVHD</th>
+                                    <th>Đề Tài</th>
+                                    <th>Điểm</th>
+                                </tr>
+                            </thead>
+                            <tbody> </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29/moment.min.js"></script>
+    <script src="~/js/tracuu/lstDiem.js"></script>
+}

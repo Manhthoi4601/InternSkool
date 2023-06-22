@@ -1,0 +1,89 @@
+﻿@page
+@using Microsoft.AspNetCore.Http.Features
+@model TwoFactorAuthenticationModel
+@{
+    ViewData["Title"] = "Xác thực hai yếu tố (2FA)";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<div class="row px-md-5 form-custom">
+    <div class="px-3">
+        <partial name="_StatusMessage" for="StatusMessage" />
+        <h3>@ViewData["Title"]</h3>
+        @{
+            var consentFeature = HttpContext.Features.Get<ITrackingConsentFeature>();
+            @if (consentFeature?.CanTrack ?? true)
+            {
+                @if (Model.Is2faEnabled)
+                {
+                    if (Model.RecoveryCodesLeft == 0)
+                    {
+                        <div class="alert alert-danger">
+                            <strong>Bạn không còn mã khôi phục nào.</strong>
+                            <p>Bạn phải <a asp-page="./GenerateRecoveryCodes">tạo một bộ mã khôi phục mới</a> trước khi có thể đăng nhập bằng mã khôi phục.</p>
+                        </div>
+                    }
+                    else if (Model.RecoveryCodesLeft == 1)
+                    {
+                        <div class="alert alert-danger">
+                            <strong>Bạn còn 1 mã khôi phục.</strong>
+                            <p>Bạn có thể <a asp-page="./GenerateRecoveryCodes">tạo một bộ mã khôi phục mới</a>.</p>
+                        </div>
+                    }
+                    else if (Model.RecoveryCodesLeft <= 3)
+                    {
+                        <div class="alert alert-warning">
+                            <strong>Bạn còn mã khôi phục @Model.RecoveryCodesLeft.</strong>
+                            <p>Bạn nên <a asp-page="./GenerateRecoveryCodes">tạo một bộ mã khôi phục mới</a>.</p>
+                        </div>
+                    }
+
+                    if (Model.IsMachineRemembered)
+                    {
+                        <form method="post" style="display: inline-block">
+                            <button type="submit" class="btn btn-primary">Quên Trình duyệt</button>
+                        </form>
+                    }
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a asp-page="./Disable2fa" class="btn btn-primary mt-3 me-2">Tắt 2FA</a>
+                            <a asp-page="./GenerateRecoveryCodes" class="btn btn-dark mt-3">Mã Khôi Phục</a>
+                        </div>
+                    </div>
+                }
+
+                <h4 class="pt-3">Ứng dụng xác thực</h4>
+                @if (!Model.HasAuthenticator)
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary mt-4">Thêm Ứng Dụng Xác Thực</a>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <a id="enable-authenticator" asp-page="./EnableAuthenticator" class="btn btn-primary mt-3 me-2">Cài Đặt</a>
+                            <a id="reset-authenticator" asp-page="./ResetAuthenticator" class="btn btn-dark mt-3">Đặt Lại</a>
+                        </div>                                          
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    <strong>Chính sách cookie và quyền riêng tư chưa được chấp nhận.</strong>
+                    <p>Bạn phải chấp nhận chính sách trước khi có thể bật xác thực hai yếu tố.</p>
+                </div>
+            }
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

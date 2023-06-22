@@ -1,0 +1,32 @@
+﻿@model GiangVien
+
+<form id="create-form">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm Mới</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row g-3">
+            <div class="form-group col-md-6">
+                <label class="form-label">Họ Tên SV</label>
+                <select class="form-select" id="cbSV" name="masv" required></select>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="form-label">Đề Tài</label>
+                <select class="form-select" id="cbDeTai" name="madt" required></select>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="form-label">GVHD</label>
+                <select class="form-select" id="cbGV" name="magv" required></select>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="form-label">Kết Quả</label>
+                <input type="text" class="form-control" name="ketqua" required />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Đóng</button>
+    </div>
+</form>

@@ -1,0 +1,23 @@
+﻿@page
+@model RegisterConfirmationModel
+@{
+    ViewData["Title"] = "Xác nhận đăng ký";
+}
+
+<h1>@ViewData["Title"]</h1>
+@{
+    if (@Model.DisplayConfirmAccountLink)
+    {
+        <p>
+            Ứng dụng này hiện chưa đăng ký người gửi email thực, hãy xem <a href="https://aka.ms/aspaccountconf">các tài liệu này</a> để biết cách định cấu hình người gửi email thực.
+            Thông thường, điều này sẽ được gửi qua email: <a id="confirm-link" href="@Model.EmailConfirmationUrl">Nhấp vào đây để xác nhận tài khoản của bạn</a>
+        </p>
+    }
+    else
+    {
+        <p>
+            Vui lòng kiểm tra email của bạn để xác nhận tài khoản của bạn.
+        </p>
+    }
+}
+

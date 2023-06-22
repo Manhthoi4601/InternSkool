@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InteSkool</title>
+    <link rel="shortcut icon" href="~/assets/img/favicon2.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/assets/plugins/feather/feather.css">
+    <link rel="stylesheet" href="~/assets/plugins/icons/flags/flags.css">
+    <link rel="stylesheet" href="~/assets/plugins/datatables/datatables.min.css">
+    <link rel="stylesheet" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/IdentityCustom.styles.css" asp-append-version="true" />
+
+</head>
+<body>
+    <div class="main-wrapper">
+        @*<=================== Header =========================>*@
+        <div class="header">
+            <div class="header-left">
+                <a asp-action="Index" class="logo"><img src="~/assets/img/school.svg" alt="Logo"></a>
+                <a asp-action="Index" class="logo logo-small"><img src="/assets/img/favicon2.png" alt="Logo" width="30" height="30"></a>
+            </div>
+            <div class="menu-toggle"><a href="javascript:void(0);" id="toggle_btn"><i class="fas fa-bars"></i></a></div>
+            <a class="mobile_btn" id="mobile_btn"><i class="fas fa-bars"></i></a>
+            <partial name="_LoginPartial" />
+        </div>
+
+        @*<=================== Sidebar =========================>*@
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                       @* User.Identity.IsAuthenticated*@
+                        @if (User.IsInRole("User"))
+                        {
+                            <li class="submenu nav-item">
+                                <a href="#"><i class="feather-grid"></i> <span> Trang Chủ</span> <span class="menu-arrow"></span></a>
+                                <ul>
+                                    <li class="nav-item"><a asp-controller="TraCuu" asp-action="TongQuan">Tổng Quan</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a asp-controller="TraCuu" asp-action="ThongtindiemSV"><i class="fas fa-clipboard"></i> <span>Tra Cứu Điểm</span></a></li>
+                            <li class="nav-item"><a asp-controller="TraCuu" asp-action="DanhsachSinhVien"><i class="fas fa-graduation-cap"></i> <span>Tra Cứu Sinh Viên</span></a></li>
+                            <li class="nav-item"><a asp-controller="LienHe" asp-action="Index"><i class="fas fa-info-circle"></i> <span>Thông Tin</span></a> </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="submenu">
+                                <a href="#"><i class="feather-grid"></i> <span> Trang Chủ</span> <span class="menu-arrow"></span></a>
+                                <ul>
+                                    <li class="submenu-item"><a asp-controller="TraCuu" asp-action="TongQuan">Tổng Quan</a></li>
+                                    <li class="submenu-item"><a asp-controller="TraCuu" asp-action="ThongtindiemSV">Tra Cứu Điểm</a></li>
+                                    <li class="submenu-item"><a asp-controller="TraCuu" asp-action="DanhsachSinhVien">Tra Cứu Sinh Viên</a></li>
+                                </ul>
+                            </li>
+                            <li class="menu-title"><span>Menu</span></li>
+                            <li class="nav-item"><a asp-controller="SinhVien" asp-action="Index"><i class="fas fa-graduation-cap"></i> <span>Sinh Viên</span></a></li>
+                            <li class="nav-item"><a asp-controller="GiangVien" asp-action="Index"><i class="fas fa-chalkboard-teacher"></i> <span>Giảng Viên</span></a></li>
+                            <li class ="nav-item"><a asp-controller="Khoa" asp-action="Index"><i class="fas fa-building"></i> <span>Khoa</span></a></li>
+                            <li class="nav-item"><a asp-controller="DeTai" asp-action="Index"><i class="fas fa-book-reader"></i> <span>Đề Tài</span></a></li>
+                            <li class="nav-item"><a asp-controller="HuongDan" asp-action="Index"><i class="fas fa-clipboard"></i> <span>Hướng Dẫn</span></a></li>
+                            <li class="nav-item"><a asp-controller="LienHe" asp-action="Index"><i class="fas fa-info-circle"></i> <span>Thông Tin</span></a> </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        @*<=================== Main =========================>*@
+        <div class="page-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+
+    @*<=================== Script =========================>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="~/assets/plugins/datatables/datatables.min.js"></script>
+    <script src="~/assets/plugins/select2/js/select2.min.js"></script>
+    <script src="~/assets/plugins/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="~/assets/plugins/moment/moment.min.js"></script>
+    <script src="~/assets/js/feather.min.js"></script>
+    <script src="~/assets/js/form-validation.js"></script>
+    <script src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/assets/js/script.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

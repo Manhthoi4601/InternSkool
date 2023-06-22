@@ -1,0 +1,26 @@
+﻿@model Khoa
+
+<form id="create-form">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm Mới</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div class="mb-3">
+            <label class="form-label"> Mã khoa</label>
+            <input type="text" class="form-control" name="makhoa" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label"> Tên khoa</label>
+            <input type="text" class="form-control" name="tenkhoa" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label"> Số điện thoại</label>
+            <input type="tel" class="form-control" name="dienthoai" required>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Đóng</button>
+    </div>
+</form>

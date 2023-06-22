@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Đề Tài";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content container-fluid">
+
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">@ViewData["Title"]</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang Chủ</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="page-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h3 class="page-title float-start">Danh Sách @ViewData["Title"]</h3>
+                            </div>
+                            <div class="col-auto text-end">
+                                <button type="button" class="btn btn-dark float-end" data-bs-toggle="modal" data-bs-target="#create-modal"><i class="fas fa-plus"></i></button>
+                                <button class="btn btn-primary mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#filter-collapse" aria-expanded="false" aria-controls="filter-collapse" id="togglebtn">
+                                    <i class="fas fa-filter"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <form id="searchAdvanced" class="col">
+                                <div class="collapse row col-lg-12 col-sm-12 mt-4" id="filter-collapse">
+                                    <div class="col-lg-4 col-sm-6 col-12 mb-3">
+                                        <input type="text" class="form-control" placeholder="Tìm kiếm ..." style="height:auto" id="searchInput" />
+                                    </div>
+                                    <div class="col-lg-3 col-sm-6 col-12">
+                                        <button type="button" class="btn btn-dark" id="resetBtn">
+                                            <i class="fas fa-sync"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    <div class="table-responsive">
+                        <table id="SubjectTbl" class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
+                            <thead class="student-thread">
+                                <tr>
+                                    <th>Mã Đề Tài</th>
+                                    <th>Tên Đề Tài</th>
+                                    <th>Kinh Phí</th>
+                                    <th>Nơi Thực Tập</th>
+                                    <th class="text-center">Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="create-modal" tabindex="-1" aria-labelledby="create-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                @await Html.PartialAsync("_CreateModal")
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detail-modal" tabindex="-1" aria-labelledby="detail-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                @await Html.PartialAsync("_DetailModal")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="edit-modal" tabindex="-1" aria-labelledby="detail-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                @await Html.PartialAsync("_EditModal")
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@section Scripts{
+    <script src="~/js/detai.js"></script>
+}
+

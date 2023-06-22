@@ -1,0 +1,49 @@
+﻿@page
+@model LoginWithRecoveryCodeModel
+@{
+    ViewData["Title"] = "Xác minh mã khôi phục";
+    Layout = "_Login";
+}
+
+<div class="container">
+    <div class="loginbox">
+        <div class="login-left">
+            <img class="img-fluid" src="~/assets/img/login.png" alt="Logo">
+        </div>
+        <div class="login-right">
+            <div class="login-right-wrap">
+                <h1><a id="forgot-password" asp-controller="Home" asp-action="Index">Intern</a></h1>
+                <p class="account-subtitle">Xác minh bằng ứng dụng ? <a asp-page="./LoginWith2fa" asp-route-returnUrl="@Model.ReturnUrl">Tại Đây</a></p>
+                <h2>@ViewData["Title"]</h2>
+
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.RecoveryCode" class="form-label"></label>
+                        <input asp-for="Input.RecoveryCode" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Input.RecoveryCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-dark btn-block" type="submit" id="login-submit">Đăng Nhập</button>
+                    </div>
+                </form>
+
+                <div class="login-or">
+                    <span class="or-line"></span>
+                    <span class="span-or">OR</span>
+                </div>
+
+                <div class="social-login">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

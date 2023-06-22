@@ -1,0 +1,82 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Hồ Sơ Cá Nhân";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<div class="row px-md-3 d-flex">
+    <h2 class="mb-3">@ViewData["Title"]</h2>
+    <partial name="_StatusMessage" for="StatusMessage" />
+    @if(!string.IsNullOrEmpty(Model.Input.ProfilePicture))
+    {
+        <div class="col-lg-3 profile-left">
+            <div class="row p-2">
+                <div class="col-lg-12 mt-3">
+                    <img src="/uploads/@Model.Input.ProfilePicture" style="width: 180px; height: 180px; border-radius: 50%;border: solid 4px #6675df" class="img-fluid ">
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-lg-3">
+            <div class="row p-2">
+                <div class="col-lg-12 mt-3">
+                    <img src="https://hcth.hcmiu.edu.vn/wp-content/uploads/2022/12/no-avatar-male-2.jpg" style="width: 180px; height: 180px; border-radius: 50%;" class="img-fluid ">
+                </div>
+            </div>
+        </div>
+    }
+    <div class="col-lg-9 profile-right">
+        <form id="profile-form" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row p-2">
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Input.LastName" class="form-label"></label>
+                        <input asp-for="Input.LastName" class="form-control" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Input.FirstName" class="form-label"></label>
+                        <input asp-for="Input.FirstName" class="form-control" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                </div>  
+            </div>
+
+            <div class="row p-2">
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Username" class="form-label"></label>
+                        <input asp-for="Username" class="form-control" disabled />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row p-2">
+                <div class="col-lg-6">
+                    <div class="form-group mb-4">
+                        <label asp-for="Input.ProfilePicture" class="form-label"></label>
+                        <input asp-for="Input.ImageFile" class="form-control" type="file" id="formFile" />
+                    </div>    
+                </div>
+            </div>
+            <button id="update-profile-button" type="submit" class="btn btn-primary m-2">Cập Nhật</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Trang Chủ";
+    Layout = "_Home";
+}
+
+<!-- Header-->
+<header class="py-5">
+    <div class="container px-4 pb-5">
+        <div class="row gx-5 justify-content-center align-items-center">
+            <div class="col-xxl-6">
+                <!-- Header text content-->
+                <div class="text-center text-xxl-start">
+                    <div class="fs-3 fw-light text-muted">Intern Skool</div>
+                    <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Tiện lợi và nhanh chóng</span></h1>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xxl-start mb-3">
+                        <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" asp-controller="TraCuu" asp-action="TongQuan">Quản Lý</a>
+                        <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" asp-controller="LienHe" asp-action="Index">Liên Hệ</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-6">
+                <div class="d-flex justify-content-center mt-5 mt-xxl-0">
+                    <div class="profile bg-gradient-primary-to-secondary">
+                        <!-- Watch a tutorial on how to do this on YouTube (link)-->
+                        <img class="img-fluid" src="~/assets/img/login.png" alt="..." />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

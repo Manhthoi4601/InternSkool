@@ -1,0 +1,40 @@
+﻿@using IdentityCustom.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="nav user-menu">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item zoom-screen me-2">
+            <a href="#" class="nav-link header-nav-list win-maximize">
+                <img src="/assets/img/icons/header-icon-04.svg" alt="">
+            </a>
+        </li>
+
+        <li class="nav-item dropdown has-arrow new-user-menus">
+            <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                <div class="user-img">
+                    <img class="rounded-circle" src="~/uploads/108327e5-5d5c-4cd2-a8d6-e7e2c8c855ae.png" width="31"
+                         alt="Jassa Rich">
+                    <div class="user-text">
+                        <h6>@UserManager.GetUserName(User)</h6>
+                        <p class="text-muted mb-0">Administrator</p>
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" id="manage">Hồ Sơ</a>
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button id="logout" type="submit" class="dropdown-item btn-link">Đăng Xuất</button>
+                </form>
+            </div>
+        </li>      
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Đăng Nhập</a>
+        </li>
+    }
+</ul>

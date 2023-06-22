@@ -1,0 +1,60 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Đăng Nhập";
+    Layout = "_Login";
+}
+
+<div class="container">
+    <div class="loginbox">
+        <div class="login-left">
+            <img class="img-fluid" src="~/assets/img/login.png" alt="Logo">
+        </div>
+        <div class="login-right">
+            <div class="login-right-wrap">
+                <h1><a id="forgot-password" asp-controller="Home" asp-action="Index">Intern</a></h1>
+                <p class="account-subtitle">Chưa có tài khoản ? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Đăng ký</a></p>
+                <h2>Đăng Nhập</h2>
+
+                <form id="account" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.UserNameOrEmail">Email <span class="login-danger">*</span></label>
+                        <input asp-for="Input.UserNameOrEmail" class="form-control" type="email" autocomplete="email" aria-required="true" required>
+                        <span class="profile-views"><i class="fas fa-user-circle"></i></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Password">Mật khẩu <span class="login-danger">*</span></label>
+                        <input asp-for="Input.Password" class="form-control pass-input" type="password" autocomplete="current-password" aria-required="true" required>
+                        <span class="profile-views feather-eye toggle-password"></span>
+                    </div>
+                    <div class="forgotpass">
+                        <div class="remember-me">
+                            <label asp-for="Input.RememberMe" class="custom_check mr-2 mb-0 d-inline-flex remember-me">
+                                <input type="checkbox" asp-for="Input.RememberMe" name="radio">
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Quên mật khẩu?</a>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-dark btn-block" type="submit" id="login-submit">Đăng Nhập</button>
+                    </div>
+                </form>
+
+                <div class="login-or">
+                    <span class="or-line"></span>
+                    <span class="span-or">OR</span>
+                </div>
+
+                <div class="social-login">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-google"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

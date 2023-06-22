@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InteSkool</title>
+    <link rel="shortcut icon" href="~/assets/img/favicon2.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/assets/plugins/feather/feather.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/IdentityCustom.styles.css" asp-append-version="true" />
+
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="header">
+            <div class="header-left">
+                <a asp-action="Index" class="logo"><img src="~/assets/img/school.svg" alt="Logo"></a>
+                <a asp-action="Index" class="logo logo-small"><img src="/assets/img/favicon2.png" alt="Logo" width="30" height="30"></a>
+            </div>
+            <a class="mobile_btn" id="mobile_btn"><i class="fas fa-bars"></i></a>
+            <partial name="_LoginPartial" />
+        </div>
+        <div class="container-md">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/feather.min.js"></script>
+    <script src="~/assets/js/script.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>
